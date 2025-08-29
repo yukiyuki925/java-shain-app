@@ -46,8 +46,8 @@ th, td {
 			<td><%=shainBean.getSei()%></td>
 			<td><%=shainBean.getNen()%></td>
 			<td><%=shainBean.getAddress()%></td>
-			<td>変更</td>
-			<td>削除</td>
+			<td><a href="ShainUpdate?id=<%=shainBean.getId()%>">変更</a></td>
+			<td><a href="ShainDelete?id=<%=shainBean.getId()%>">削除</a></td>
 		</tr>
 		<%
 }

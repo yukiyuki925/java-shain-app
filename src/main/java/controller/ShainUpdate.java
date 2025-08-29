@@ -2,7 +2,6 @@ package controller;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.ArrayList;
 
 import javax.naming.NamingException;
 
@@ -16,16 +15,16 @@ import beans.ShainBean;
 import model.ShainLogic;
 
 /**
- * Servlet implementation class ShainIndex
+ * Servlet implementation class ShainUpdate
  */
-@WebServlet("/ShainIndex")
-public class ShainIndex extends HttpServlet {
+@WebServlet("/ShainUpdate")
+public class ShainUpdate extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ShainIndex() {
+    public ShainUpdate() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -34,26 +33,22 @@ public class ShainIndex extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 		//社員ロジックの作成
 		ShainLogic shainLogic = new ShainLogic();
 		
 		try {
-			//社員リスト取得
-			ArrayList<ShainBean> shainList = shainLogic.getAllShain();
+			//社員Beanの作成
+			ShainBean shainBean = shainLogic.getShainBean(Integer.parseInt(request.getParameter("id")));
 			
-			//社員リストをセットする
-			request.setAttribute("shainList", shainList);
+			//更新社員をセットする
+			request.setAttribute("shainBean", shainBean);
 			
-			//index.jspへ転送
-			request.getRequestDispatcher("/WEB-INF/view/index.jsp").forward(request, response);
+			//update.jspへ転送
+			request.getRequestDispatcher("/WEB-INF/view/update.jsp").forward(request, response);
 			
-		} catch (SQLException | NamingException e) {
+		} catch (NumberFormatException | SQLException | NamingException e) {
 			// TODO 自動生成された catch ブロック
 			e.printStackTrace();
-			
-			//エラーページへ転送
-			request.getRequestDispatcher("/WEB-INF/view/error.jsp").forward(request, response);
 		}
 	}
 
