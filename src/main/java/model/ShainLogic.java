@@ -18,7 +18,7 @@ public class ShainLogic {
 	public void updateShain(ShainBean shainBean) throws SQLException, NamingException {
 		
 		//社員を更新するSQL
-		String sql = "update shain set name=?, sei=?, nen=?, address=?, where id=?";
+		String sql = "update shain set name=?, sei=?, nen=?, address=? where id=?";
 		try(Connection con = ConnectionBase.getConnection();
 				PreparedStatement pstmt = con.prepareStatement(sql);){
 			//パラメータをSQLにセット
