@@ -14,6 +14,20 @@ import beans.ShainBean;
 
 public class ShainLogic {
 	
+	//社員情報を削除
+	public void deleteShain(int id) throws SQLException, NamingException {
+		String sql = "delete from shain where id=?";
+		try(Connection con = ConnectionBase.getConnection();
+				PreparedStatement pstmt = con.prepareStatement(sql);){
+			pstmt.setInt(1, id);
+
+			//SQL文をコンソールに表示
+			System.out.println(pstmt.toString());
+			//SQLを実行
+			pstmt.executeUpdate();
+		}
+	}
+	
 	//社員情報を更新
 	public void updateShain(ShainBean shainBean) throws SQLException, NamingException {
 		
